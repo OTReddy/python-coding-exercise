@@ -11,6 +11,9 @@ class TestCheckoutSystem(unittest.TestCase):
     def test_only_apples(self):
         self.assertEqual(self.checkout.calculate_total_cost(["Apple"]), "£0.60")
 
+    def test_only_banaba(self):
+        self.assertEqual(self.checkout.calculate_total_cost(["Banana"]), "£0.20")
+
     def test_only_oranges(self):
         self.assertEqual(self.checkout.calculate_total_cost(["Orange", "Orange"]), "£0.50")
 
@@ -26,6 +29,12 @@ class TestCheckoutSystem(unittest.TestCase):
     def test_mixed_fruits_with_offers(self):
         items = ["Apple", "Apple", "Apple", "Orange", "Orange", "Orange", "Orange"]
         self.assertEqual(self.checkout.calculate_total_cost(items), "£1.95")
+
+    def test_only_bananas(self):
+        self.assertEqual(self.checkout.calculate_total_cost(["Banana", "Banana"]), "£0.20")
+
+    def test_bananas_with_apples_offer(self):
+        self.assertEqual(self.checkout.calculate_total_cost(["Banana", "Banana", "Banana", "Apple"]), "£0.80")
 
 # Running the tests
 unittest.main(argv=[''], exit=False)
